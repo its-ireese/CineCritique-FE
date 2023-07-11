@@ -7,7 +7,7 @@ import ReviewForm from './reviewForm/ReviewForm';
 
 import React from 'react'
 
-const Reviews = () => {
+const Reviews = ({getMovieData, movie, reviews, setReviews}) => {
 
     const revText = useRef();
     let params = useParams();
@@ -17,7 +17,7 @@ const Reviews = () => {
         getMovieData(movieId);
     },[])
 
-    const addReview = async(e) => {
+    const createReview = async(e) => {
         e.preventDefault();
 
         const rev = revText.current;
@@ -34,9 +34,7 @@ const Reviews = () => {
         catch(err){
             console.log(err);
 
-        }
-
-       
+        }       
     }
 
   return (
@@ -53,7 +51,7 @@ const Reviews = () => {
                     <>
                         <Row>
                             <Col>
-                                <ReviewForm handleSubmit={addReview} revText={revText} labelText= "What is your thoughts on the movie?"/>
+                                <ReviewForm handleSubmit={createReview} revText={revText} labelText= "What is your thoughts on the movie?"/>
                             </Col>
                         </Row>
                         <Row>
